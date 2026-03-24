@@ -12,7 +12,7 @@ COPY . .
 # Get dependencies and build web
 RUN flutter pub get
 RUN flutter create . --platforms web
-RUN flutter build web --release
+RUN flutter build web --release --no-tree-shake-icons
 
 # Stage 2: Serve
 FROM nginx:alpine

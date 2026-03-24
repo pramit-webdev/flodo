@@ -56,8 +56,14 @@ docker-compose up --build
     -   **Plan**: Free tier.
 3.  **Why Docker?**: Since most free hosts (like Vercel) don't have Flutter pre-installed, using the `frontend/Dockerfile` ensures the build happens in a controlled environment with Flutter already configured.
 
-#### Deploying to Railway (Alternative)
-Just connect your repo. Railway will see the `docker-compose.yml` and can deploy both the backend and frontend simultaneously as a "Service Group".
+#### Deploying to GitHub Pages (FREE & RELIABLE)
+1.  **Check Workflow**: I've created `.github/workflows/deploy.yml`. Ensure the `--base-href "/flodo/"` in the "Build Web" step matches your repository name.
+2.  **Push to GitHub**: Commit and push this new workflow file.
+3.  **Enable GitHub Actions**: 
+    -   **Settings** -> **Actions** -> **General** -> **Workflow permissions**, and select **"Read and write permissions"**.
+4.  **Wait for Build**: Once finished, a new `gh-pages` branch will be created.
+5.  **Final Step**: Go to **Settings** -> **Pages** -> **Branch** and select **`gh-pages`**.
+    -   Your app will be live at `https://pramit-webdev.github.io/flodo/`!
 
 ---
 
