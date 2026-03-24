@@ -11,6 +11,7 @@ COPY . .
 
 # Get dependencies and build web
 RUN flutter pub get
+RUN flutter create . --platforms web
 RUN flutter build web --release
 
 # Stage 2: Serve
