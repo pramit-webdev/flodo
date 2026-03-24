@@ -36,20 +36,27 @@ A visually polished, full-stack Task Management app built with Flutter (Frontend
    ```
    The server will start at `http://localhost:8000`.
 
-### 3. Frontend Setup (Flutter)
-1. Navigate to the `frontend` directory:
-   ```bash
-   cd frontend
-   ```
-2. Install Flutter dependencies:
-   ```bash
-   flutter pub get
-   ```
-3. (Optional) Update the `baseUrl` in `lib/providers/task_provider.dart` if your backend is hosted elsewhere.
-4. Run the app:
-   ```bash
-   flutter run -d chrome  # Or your preferred device/emulator
-   ```
+### 4. Monorepo & Cloud Deployment (E2E)
+
+The easiest way to deploy this monorepo to free online resources (like **Railway**, **Koyeb**, or **Render**) is using the provided Docker configuration.
+
+#### Using Docker Compose (Local Testing)
+If you have Docker installed, you can run the whole stack with one command:
+```bash
+docker-compose up --build
+```
+- Frontend: `http://localhost:8080`
+- Backend: `http://localhost:8000`
+
+#### Deploying to Railway/Render (Free)
+1.  **Push to GitHub**: Push the entire folder (with `backend/` and `frontend/` and `docker-compose.yml`).
+2.  **Add Services**:
+    -   On **Railway**: Click "New Project" -> "GitHub Repo". Railway will detect the `docker-compose.yml` or the sub-directories automatically.
+    -   On **Render**: Create two "Web Services". 
+        -   **Backend**: Set "Root Directory" to `backend`. Render will use the `Dockerfile` inside.
+        -   **Frontend**: Set "Root Directory" to `frontend`. Render will use the `Dockerfile` inside.
+3.  **Configure `.env`**: In the platform's dashboard, add your `SUPABASE_URL` and `SUPABASE_KEY` as environment variables for the backend service.
+4.  **Update Base URL**: Ensure the `baseUrl` in `frontend/lib/providers/task_provider.dart` points to your *deployed* backend URL.
 
 ---
 
