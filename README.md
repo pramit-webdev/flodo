@@ -64,10 +64,12 @@ docker-compose up --build
 4.  **Wait for Build**: Once finished, a new `gh-pages` branch will be created.
 5.  **Final Step**: Go to **Settings** -> **Pages** -> **Branch** and select **`gh-pages`**.
     -   Your app will be live at `https://pramit-webdev.github.io/flodo/`!
-
----
-
-## ✨ Features Implemented
+#### Deploying to Firebase Hosting (FREE & FAST)
+1.  **Firebase Console**: Create a project at [console.firebase.google.com](https://console.firebase.google.com/).
+2.  **Service Account**: Go to Project Settings -> Service Accounts -> Generate new private key.
+3.  **GitHub Secret**: In your repo Settings -> Secrets -> Actions, add a new secret named `FIREBASE_SERVICE_ACCOUNT` and paste the JSON content from your private key.
+4.  **Update Workflow**: Update the `projectId` in `.github/workflows/firebase-deploy.yml` with your Firebase project ID.
+5.  **Push**: Commit and push. Your app will be live at `https://your-project-id.web.app`!
 
 - **Core Requirements**:
   - Full CRUD functionality for Tasks.
