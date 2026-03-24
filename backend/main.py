@@ -6,7 +6,7 @@ from uuid import UUID
 
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, Query
-from fastapi.middleware.cors import CORSMidware
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from supabase import create_client, Client
 
@@ -16,7 +16,7 @@ app = FastAPI(title="Flodo Task Manager API")
 
 # CORS configuration
 app.add_middleware(
-    CORSMidware,
+    CORSMiddleware,
     allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
