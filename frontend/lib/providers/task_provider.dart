@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../models/task_model.dart';
 
 // API Configuration - User should change this to their deployed backend URL
-const String baseUrl = 'http://localhost:8000';
+const String baseUrl = 'https://flodo-backend.onrender.com';
 
 class TaskNotifier extends AsyncNotifier<List<Task>> {
   @override

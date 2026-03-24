@@ -48,15 +48,16 @@ docker-compose up --build
 - Frontend: `http://localhost:8080`
 - Backend: `http://localhost:8000`
 
-#### Deploying to Railway/Render (Free)
-1.  **Push to GitHub**: Push the entire folder (with `backend/` and `frontend/` and `docker-compose.yml`).
-2.  **Add Services**:
-    -   On **Railway**: Click "New Project" -> "GitHub Repo". Railway will detect the `docker-compose.yml` or the sub-directories automatically.
-    -   On **Render**: Create two "Web Services". 
-        -   **Backend**: Set "Root Directory" to `backend`. Render will use the `Dockerfile` inside.
-        -   **Frontend**: Set "Root Directory" to `frontend`. Render will use the `Dockerfile` inside.
-3.  **Configure `.env`**: In the platform's dashboard, add your `SUPABASE_URL` and `SUPABASE_KEY` as environment variables for the backend service.
-4.  **Update Base URL**: Ensure the `baseUrl` in `frontend/lib/providers/task_provider.dart` points to your *deployed* backend URL.
+#### Deploying to Render (Recommended for Monorepo)
+1.  **Backend**: Follow the steps in the previous section (Native Python).
+2.  **Frontend**: Create another **Web Service** on Render.
+    -   **Root Directory**: `frontend`
+    -   **Runtime**: `Docker` (Render will automatically detect your `Dockerfile`).
+    -   **Plan**: Free tier.
+3.  **Why Docker?**: Since most free hosts (like Vercel) don't have Flutter pre-installed, using the `frontend/Dockerfile` ensures the build happens in a controlled environment with Flutter already configured.
+
+#### Deploying to Railway (Alternative)
+Just connect your repo. Railway will see the `docker-compose.yml` and can deploy both the backend and frontend simultaneously as a "Service Group".
 
 ---
 
