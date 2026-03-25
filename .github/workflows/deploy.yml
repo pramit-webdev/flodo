@@ -30,7 +30,7 @@ jobs:
 
       - name: Build Web
         working-directory: frontend
-        run: flutter build web --release --base-href "/flodo/"
+        run: flutter build web --release --base-href "/flodo/" --no-tree-shake-icons
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
