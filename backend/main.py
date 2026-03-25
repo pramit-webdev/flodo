@@ -21,6 +21,7 @@ app.add_middleware(
     allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["*"],
 )
 
 # Supabase configuration
@@ -35,23 +36,21 @@ else:
 
 # Models
 class TaskBase(BaseModel):
-    title: str
-    description: str
-    due_date: datetime
-    status: str = "To-Do"
-    blocked_by_id: Optional[UUID] = None
-    order_index: int = 0
-
-class TaskCreate(TaskBase):
-    pass
-
-class TaskUpdate(TaskBase):
     title: Optional[str] = None
     description: Optional[str] = None
     due_date: Optional[datetime] = None
     status: Optional[str] = None
     blocked_by_id: Optional[UUID] = None
-    order_index: Optional[int] = None
+    order_index: Optional[int] = 0
+
+class TaskCreate(TaskBase):
+    title: str
+    description: str
+    due_date: datetime
+    status: str
+
+class TaskUpdate(TaskBase):
+    pass
 
 class Task(TaskBase):
     id: UUID
