@@ -89,11 +89,15 @@ async def create_task(task: TaskCreate):
     
     await simulate_delay()
     
-    data = task.model_dump()
-    # Convert UUID to string for Supabase
+    data = {k: v for k, v in task.model_dump().items() if v is not None}
+    
+    # Ensure blocked_by_id is a string if it exists
     if data.get("blocked_by_id"):
         data["blocked_by_id"] = str(data["blocked_by_id"])
     
+    if "id" in data:
+        del data["id"]
+        
     result = supabase.table("tasks").insert(data).execute()
     
     if not result.data:
